@@ -46,9 +46,8 @@ client.addListener('message', function(from, to, msg) {
     } else if (!nameFlag) {
         study(msg);
     }
-
     
-    if (talkFlag && (nameFlag || Math.random() < talkProb)) {
+    if (talkFlag && (nameFlag || (Math.random() < config.talkProb))) {
         markov(function(msg){
             client.say(to, msg);
         }, msg.length / 2);
