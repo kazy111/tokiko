@@ -8,12 +8,13 @@ IRCに入って学習、適当な文章を吐きます。
 
 ## Requirement
 MongoDB (2.0.6で確認)
+MeCab (0.98で確認)
 
 ## Installation
 あんまり確認してないけど、適当にgit cloneしてから依存ライブラリを入れればOK
 
     $ git clone git@github.com:kazy111/tokiko.git tokiko
-
+    $ cd tokiko
     $ npm install irc@0.3.4
     $ npm install mongoose@3.1.2
 
