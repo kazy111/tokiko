@@ -7,8 +7,9 @@ IRCに入って学習、適当な文章を吐きます。
 拡張していくかどうかは未定。
 
 ## Requirement
-MongoDB (2.0.6で確認)
-MeCab (0.98で確認)
+
+  * MongoDB (2.0.6で確認)
+  * MeCab (0.98で確認)
 
 ## Installation
 あんまり確認してないけど、適当にgit cloneしてから依存ライブラリを入れればOK

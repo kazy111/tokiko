@@ -1,19 +1,5 @@
-// acministrator name (control by pm)
-var adminName = 'kazy_cocoa';
-
-// bot setting
-var userName = '_tokiko_';
-var passWord = '';
-var initChannels = ['#kazy'];
-var dbURL = 'mongodb://localhost/tokiko';
-
-var talkProb = 0.2;
-var talkChannels = [];
-var talkNameRegex = /(tokiko|ときこ|兎季子)/;
-var talkOnRegex = /(ときこ|兎季子)(起|お)きろ/;
-var talkOffRegex = /(ときこ|兎季子)(寝|ね)ろ/;
-
-
+var config = require('./config.js');
+console.log(config);
 
 var irc = require("irc");
 var mecab = require("mecab");
@@ -28,16 +14,16 @@ var WordSchema = new Schema({
     count: {type: Number, default: 0}
 });
 mongoose.model('Word', WordSchema);
-mongoose.connect(dbURL);
+mongoose.connect(config.dbURL);
 
 var WordDB = mongoose.model('Word');
 
-var client = new irc.Client('c.ustream.tv', userName, {
+var client = new irc.Client(config.server, config.userName, {
     debug: true,
-    userName: userName,
-    realName: userName,
-    password: passWord,
-    channels: initChannels,
+    userName: config.userName,
+    realName: config.userName,
+    password: config.passWord,
+    channels: config.initChannels,
 });
 
 client.addListener('error', function(msg) {
@@ -48,15 +34,15 @@ client.addListener('message', function(from, to, msg) {
     
 
     // name judge
-    var nameFlag = msg.match(talkNameRegex);
+    var nameFlag = msg.match(config.talkNameRegex);
     
     // judge talk switch
-    var talkFlag = (talkChannels.indexOf(to) > -1);
-    if (!talkFlag && msg.match(talkOnRegex)) {
-        talkChannels.push(to);
+    var talkFlag = (config.talkChannels.indexOf(to) > -1);
+    if (!talkFlag && msg.match(config.talkOnRegex)) {
+        config.talkChannels.push(to);
         talkFlag = true;
-    } else if(talkFlag && msg.match(talkOffRegex)) {
-        talkChannels.splice(talkChannels.indexOf(to), 1);
+    } else if(talkFlag && msg.match(config.talkOffRegex)) {
+        config.talkChannels.splice(config.talkChannels.indexOf(to), 1);
         talkFlag = false;
     } else if (!nameFlag) {
         study(msg);
@@ -72,7 +58,7 @@ client.addListener('message', function(from, to, msg) {
 
 client.addListener('pm', function(from, msg) {
     // admin execute any irc command
-    if (from == adminName) {
+    if (from == config.adminName) {
         client.send(msg);
     }
 });
@@ -83,7 +69,7 @@ function study(msg){
     tmp.unshift(['__start', '__start']);
     tmp.push(['__end', '__end']);
     //console.log( tmp );
-    for(var i = 0; i < tmp.length - 1; i++){
+    for (var i = 0; i < tmp.length - 1; i++) {
         // count up
         WordDB.update(
             { word_a: tmp[i][0], part_a: tmp[i][1], word_b: tmp[i+1][0], part_b: tmp[i+1][1] },
@@ -108,9 +94,9 @@ function markov(thunk, length) {
             sum += values[i].sum;
         }
         var rnd = Math.round(Math.random() * sum);
-        for(var i in values) {
+        for (var i in values) {
             total += values[i].sum;
-            if(rnd <= total){
+            if (rnd <= total) {
                 return {word: values[i].word, part: values[i].part,
                         count: values[i].count, sum: sum};
             }
@@ -131,7 +117,7 @@ function markov(thunk, length) {
                 if(!err && docs.length > 0){
                     var val = docs[0].value;
                     
-                    if(val.part == '__end' || words.length > length){
+                    if (val.part == '__end' || words.length > length) {
                         thunk(words.join(''));
                     } else {
                         words.push(val.word);
