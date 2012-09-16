@@ -1,5 +1,4 @@
 var config = require('./config.js');
-console.log(config);
 
 var irc = require("irc");
 var mecab = require("mecab");

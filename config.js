@@ -15,9 +15,9 @@ module.exports = {
     // talk channels (initial state)
     talkChannels: [],
     // message pattarn of name (100% response if talk ON)
-    talkNameRegex: /(tokiko|‚Æ‚«‚±|“e‹Gq)/,
+    talkNameRegex: /(tokiko|ã¨ãã“|å…å­£å­)/,
     // message pattarn of talk ON
-    talkOnRegex: /(‚Æ‚«‚±|“e‹Gq)(‹N|‚¨)‚«‚ë/,
+    talkOnRegex: /(ã¨ãã“|å…å­£å­)(èµ·|ãŠ)ãã‚/,
     // message pattarn of talk OFF
-    talkOffRegex: /(‚Æ‚«‚±|“e‹Gq)(Q|‚Ë)‚ë/
+    talkOffRegex: /(ã¨ãã“|å…å­£å­)(å¯|ã­)ã‚/
 };
