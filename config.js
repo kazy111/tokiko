@@ -11,7 +11,7 @@ module.exports = {
     dbURL: 'mongodb://localhost/tokiko',
 
     // talk probability
-    talkProb: 0.2,
+    talkProb: 0.4,
     // talk channels (initial state)
     talkChannels: [],
     // message pattarn of name (100% response if talk ON)
