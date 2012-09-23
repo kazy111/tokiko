@@ -8,6 +8,7 @@ IRCに入って学習、適当な文章を吐きます。
 
 ## Requirement
 
+  * CoffeeScript
   * MongoDB (2.0.6で確認)
   * MeCab (0.98で確認)
 
@@ -16,7 +17,8 @@ IRCに入って学習、適当な文章を吐きます。
 
     $ git clone git@github.com:kazy111/tokiko.git tokiko
     $ cd tokiko
-    $ npm install irc@0.3.4
+    $ npm install hubot
+    $ npm install hubot-irc
     $ npm install mongoose@3.1.2
 
 mecabはこのへんからよろしくお願いします
@@ -24,11 +26,11 @@ mecabはこのへんからよろしくお願いします
 
 ※package.jsonを参照してバージョンは合わせる感じで
 
-接続設定とかは config.js を書き換えて下さい。
+接続設定とかは runhubot.sh と config.coffee を書き換えて下さい。
 見たらだいたいわかるんじゃないかなー(丸投げ)
 
 実行は普通に以下。
 
-    $ node app.js
+    $ ./runhubot.sh
 
 loadlog.js はテキストファイルを学習させたときの書き捨てスクリプトです。
