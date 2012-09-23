@@ -1,6 +1,5 @@
 module.exports = {
-    // acministrator name (use control by private message)
-    adminName: 'kazy_cocoa',
+    debug: true,
 
     // irc setting
     userName: '_tokiko_',
@@ -20,4 +19,7 @@ module.exports = {
     talkOnRegex: /(ときこ|兎季子)(起|お)きろ/,
     // message pattarn of talk OFF
     talkOffRegex: /(ときこ|兎季子)(寝|ね)ろ/
+
+    // upper limit of number of words
+    maxWordLength: 18
 };
