@@ -1,12 +1,13 @@
 {
-    "name": "tokiko",
-    "description": "artificial unintelligent",
-    "version": "0.1.0",
-    "author": "kazy111",
-    "dependencies": {
-      "irc":  "~0.3.4",
-      "mongoose": "~3.1.2",
-      "mecab": "~0.0.1"
-    },
-    "devDependencies": {}
+  "name": "tokiko",
+  "description": "artificial unintelligent",
+  "version": "0.2.0",
+  "author": "kazy111",
+  "dependencies": {
+    "mongoose": "~3.1.2",
+    "mecab": "~0.0.1",
+    "hubot": "~2.3.4",
+    "hubot-irc": "~0.1.0"
+  },
+  "devDependencies": {}
 }
